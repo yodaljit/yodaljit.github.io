@@ -29,7 +29,7 @@
 
   <script>
     // The value below is injected by flutter build, do not touch.
-    var serviceWorkerVersion = "1968906737";
+    var serviceWorkerVersion = '"2934927740"';
   </script>
   <!-- This script adds the flutter initialization JS code -->
   <script src="flutter.js?version=2.12.0" defer></script>
@@ -153,7 +153,7 @@ _flutter.buildConfig = {"engineRevision":"db49896cf25ceabc44096d5f088d86414e05a7
 
 _flutter.loader.load({
   serviceWorkerSettings: {
-    serviceWorkerVersion: "1968906737"
+    serviceWorkerVersion: "2934927740"
   }
 });
 -->
@@ -173,19 +173,23 @@ _flutter.buildConfig = {"engineRevision":"db49896cf25ceabc44096d5f088d86414e05a7
 
 
        _flutter.loader.load({
-         serviceWorker: {
-           serviceWorkerVersion: "1968906737",
-         },
-         onEntrypointLoaded: function(engineInitializer) {
-         let config = { renderer: 'html' };
-           engineInitializer.initializeEngine(config).then(function(appRunner) {
-             if(document.getElementById('splash'))
-               document.getElementById('splash').remove();
-             appRunner.runApp();
-           });
-         }
-       });
-     });
+        serviceWorker: {
+          serviceWorkerVersion: serviceWorkerVersion,
+        },
+        onEntrypointLoaded: function(engineInitializer) {
+          let config = {
+            renderer: 'html',
+            canvasKitBaseUrl: "/canvaskit/",
+          };
+          engineInitializer.initializeEngine(config).then(function(appRunner) {
+            if(document.getElementById('splash')) {
+              document.getElementById('splash').remove();
+            }
+            appRunner.runApp();
+          });
+        }
+      });
+    });
   </script>
 
   <script>
